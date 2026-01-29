@@ -30,8 +30,12 @@ import 'package:flutter_clean_architecture/features/posts/data/repositories/post
     as _i549;
 import 'package:flutter_clean_architecture/features/posts/domain/repositories/posts_repository.dart'
     as _i818;
+import 'package:flutter_clean_architecture/features/posts/domain/usecases/get_post_details_usecase.dart'
+    as _i33;
 import 'package:flutter_clean_architecture/features/posts/domain/usecases/get_posts_usecase.dart'
     as _i209;
+import 'package:flutter_clean_architecture/features/posts/presentation/state/post_details_cubit.dart'
+    as _i506;
 import 'package:flutter_clean_architecture/features/posts/presentation/state/posts_cubit.dart'
     as _i494;
 import 'package:get_it/get_it.dart' as _i174;
@@ -64,8 +68,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i818.PostsRepository>(
       () => _i549.PostsRepositoryImpl(gh<_i435.PostsRemoteDataSource>()),
     );
+    gh.factory<_i33.GetPostDetailsUseCase>(
+      () => _i33.GetPostDetailsUseCase(gh<_i818.PostsRepository>()),
+    );
     gh.factory<_i209.GetPostsUseCase>(
       () => _i209.GetPostsUseCase(gh<_i818.PostsRepository>()),
+    );
+    gh.factory<_i506.PostDetailsCubit>(
+      () => _i506.PostDetailsCubit(gh<_i33.GetPostDetailsUseCase>()),
     );
     gh.factory<_i494.PostsCubit>(
       () => _i494.PostsCubit(gh<_i209.GetPostsUseCase>()),

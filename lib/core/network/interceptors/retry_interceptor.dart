@@ -13,7 +13,10 @@ class RetryInterceptor extends Interceptor {
   }) : _dio = dio;
 
   @override
-  Future<void> onError(DioException err, ErrorInterceptorHandler handler) async {
+  Future<void> onError(
+    DioException err,
+    ErrorInterceptorHandler handler,
+  ) async {
     final shouldRetry = _isRetryable(err);
     final retries = (err.requestOptions.extra['retries'] as int?) ?? 0;
 
@@ -24,12 +27,12 @@ class RetryInterceptor extends Interceptor {
 
     err.requestOptions.extra['retries'] = retries + 1;
 
-    await Future.delayed(retryDelay);
+    await Future<void>.delayed(retryDelay);
 
     try {
-      final response = await _dio.fetch(err.requestOptions);
+      final response = await _dio.fetch<dynamic>(err.requestOptions);
       handler.resolve(response);
-    } catch (e) {
+    } on DioException catch (err) {
       handler.next(err);
     }
   }

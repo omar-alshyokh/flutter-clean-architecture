@@ -1,11 +1,17 @@
 import 'package:flutter/widgets.dart';
 
 class ResponsiveBuilder extends StatelessWidget {
-  final Widget Function(BuildContext context, bool isMobile, bool isTablet, bool isDesktop) builder;
+  final Widget Function(
+    BuildContext context, {
+    bool isMobile,
+    bool isTablet,
+    bool isDesktop,
+  })
+  builder;
 
   const ResponsiveBuilder({
-    super.key,
     required this.builder,
+    super.key,
   });
 
   @override
@@ -16,6 +22,11 @@ class ResponsiveBuilder extends StatelessWidget {
     final isTablet = width >= 600 && width < 1024;
     final isDesktop = width >= 1024;
 
-    return builder(context, isMobile, isTablet, isDesktop);
+    return builder(
+      context,
+      isMobile: isMobile,
+      isTablet: isTablet,
+      isDesktop: isDesktop,
+    );
   }
 }

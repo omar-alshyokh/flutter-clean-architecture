@@ -18,8 +18,9 @@ abstract class BaseRepository {
     required Result<List<M>> remoteResult,
   }) {
     return switch (remoteResult) {
-      Success<List<M>>(:final data) =>
-          Success<List<E>>(data.map((m) => m.toEntity()).toList()),
+      Success<List<M>>(:final data) => Success<List<E>>(
+        data.map((m) => m.toEntity()).toList(),
+      ),
       Failure<List<M>>(:final error) => Failure<List<E>>(error),
     };
   }

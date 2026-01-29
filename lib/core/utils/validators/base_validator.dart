@@ -8,11 +8,11 @@ abstract class BaseValidator {
   String message(BuildContext? context);
 
   static String? validateValue(
-      BuildContext? context,
-      String? value,
-      List<BaseValidator> validators, {
-        bool stopOnFirstError = true,
-      }) {
+    BuildContext? context,
+    String? value,
+    List<BaseValidator> validators, {
+    bool stopOnFirstError = true,
+  }) {
     final v = value ?? '';
     for (final validator in validators) {
       if (!validator.validate(v)) {

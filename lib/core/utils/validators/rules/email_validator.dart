@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base_validator.dart';
+import 'package:flutter_clean_architecture/core/utils/validators/base_validator.dart';
 
 class EmailValidator extends BaseValidator {
   final bool allowEmpty;
@@ -22,7 +22,8 @@ class EmailValidator extends BaseValidator {
   }
 
   @override
-  String message(BuildContext? context) => customMessage ?? 'Enter a valid email address';
+  String message(BuildContext? context) =>
+      customMessage ?? 'Enter a valid email address';
 
   /// How to use
   /// TextFormField(

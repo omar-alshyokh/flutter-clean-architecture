@@ -1,5 +1,5 @@
 import 'package:flutter_clean_architecture/bootstrap.dart';
 
-void main() {
-  bootstrap(flavor: 'prod');
+void main() async{
+  await bootstrap(flavor: 'prod');
 }

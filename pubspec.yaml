@@ -39,6 +39,7 @@ dependencies:
   dio: ^5.4.3+1 # HTTP client (interceptors, cancellation, retries, etc.)
   connectivity_plus: ^7.0.0 # Network type/status (WiFi/mobile)
   internet_connection_checker_plus: ^2.5.0 # Real internet reachability checks
+  pretty_dio_logger: ^1.4.0 # Pretty logging for Dio requests/responses
 
   # -------------------------
   # Persistence / Storage
@@ -73,12 +74,13 @@ dev_dependencies:
     sdk: flutter
 
   # Linting / Quality
-  flutter_lints: ^6.0.0
+  #  flutter_lints: ^6.0.0
 
   # Code Generation
   build_runner: ^2.10.5 # Runs builders for code generation
   json_serializable: ^6.12.0 # Generates fromJson/toJson
   injectable_generator: ^2.12.0 # Generates get_it registrations
+  very_good_analysis: ^10.0.0 # Dart code analysis
 
 flutter:
   uses-material-design: true

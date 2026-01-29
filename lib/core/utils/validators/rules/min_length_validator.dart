@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base_validator.dart';
+import 'package:flutter_clean_architecture/core/utils/validators/base_validator.dart';
 
 class MinLengthValidator extends BaseValidator {
   final int min;
@@ -14,11 +14,11 @@ class MinLengthValidator extends BaseValidator {
   String message(BuildContext? context) =>
       customMessage ?? 'Must be at least $min characters';
 
-/// How to use
-/// TextFormField(
-///   validator: Validators.combine(context, [
-///     const RequiredValidator(),
-///     const MinLengthValidator(),
-///   ]),
-/// )
+  /// How to use
+  /// TextFormField(
+  ///   validator: Validators.combine(context, [
+  ///     const RequiredValidator(),
+  ///     const MinLengthValidator(),
+  ///   ]),
+  /// )
 }

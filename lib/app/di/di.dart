@@ -1,8 +1,7 @@
 import 'package:flutter_clean_architecture/app/config/app_config.dart';
+import 'package:flutter_clean_architecture/app/di/di.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-
-import 'di.config.dart';
 
 final GetIt getIt = GetIt.instance;
 

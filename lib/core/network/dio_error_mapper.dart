@@ -3,7 +3,6 @@ import 'package:flutter_clean_architecture/core/error/base_error.dart';
 import 'package:flutter_clean_architecture/core/error/error_mapper.dart';
 import 'package:flutter_clean_architecture/core/error/failures.dart';
 
-
 class DioErrorMapper implements ErrorMapper {
   const DioErrorMapper();
 
@@ -18,36 +17,36 @@ class DioErrorMapper implements ErrorMapper {
   BaseError _mapDioException(DioException exception) {
     final statusCode = exception.response?.statusCode?.toString();
 
-    switch (exception.type) {
-      case DioExceptionType.connectionTimeout:
-      case DioExceptionType.sendTimeout:
-      case DioExceptionType.receiveTimeout:
-        return TimeoutError(
-          message: 'Request timed out',
-          code: statusCode,
-        );
+    return switch (exception.type) {
+      DioExceptionType.connectionTimeout ||
+      DioExceptionType.sendTimeout ||
+      DioExceptionType.receiveTimeout =>
+          TimeoutError(
+            message: 'Request timed out',
+            code: statusCode,
+          ),
 
-      case DioExceptionType.connectionError:
-        return NetworkConnectionError(
-          message: 'No internet connection',
-          code: statusCode,
-        );
+      DioExceptionType.connectionError =>
+          NetworkConnectionError(
+            message: 'No internet connection',
+            code: statusCode,
+          ),
 
-      case DioExceptionType.badResponse:
-        return _mapHttpStatus(exception.response?.statusCode, exception);
+      DioExceptionType.badResponse =>
+          _mapHttpStatus(exception.response?.statusCode, exception),
 
-      case DioExceptionType.cancel:
-        return const CustomError(message: 'Request cancelled');
+      DioExceptionType.cancel =>
+      const CustomError(message: 'Request cancelled'),
 
-      case DioExceptionType.badCertificate:
-        return const CustomError(message: 'Bad certificate');
+      DioExceptionType.badCertificate =>
+      const CustomError(message: 'Bad certificate'),
 
-      case DioExceptionType.unknown:
-        return UnknownError(
-          message: exception.message ?? 'Unexpected error occurred',
-          code: statusCode,
-        );
-    }
+      DioExceptionType.unknown =>
+          UnknownError(
+            message: exception.message ?? 'Unexpected error occurred',
+            code: statusCode,
+          ),
+    };
   }
 
   BaseError _mapHttpStatus(int? statusCode, DioException exception) {

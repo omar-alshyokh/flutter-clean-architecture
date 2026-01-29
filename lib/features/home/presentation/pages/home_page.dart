@@ -4,7 +4,6 @@ import 'package:flutter_clean_architecture/core/presentation/layout/screen_wrapp
 import 'package:flutter_clean_architecture/core/presentation/widgets/app_button.dart';
 import 'package:go_router/go_router.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -23,7 +22,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 16),
             AppButton(
               label: 'Open Posts',
-              onPressed: () => context.go(RoutePaths.posts),
+              onPressed: () => context.push(RoutePaths.posts),
             ),
           ],
         ),

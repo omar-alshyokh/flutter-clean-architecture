@@ -3,10 +3,9 @@ import 'package:flutter_clean_architecture/app/config/app_config.dart';
 import 'package:flutter_clean_architecture/core/constants/app_constants.dart';
 import 'package:flutter_clean_architecture/core/error/error_mapper.dart';
 import 'package:flutter_clean_architecture/core/network/dio_client.dart';
-import 'package:flutter_clean_architecture/core/network/interceptors/logging_interceptor.dart';
+import 'package:flutter_clean_architecture/core/network/interceptors/network_logging_interceptor.dart';
 import 'package:flutter_clean_architecture/core/network/interceptors/retry_interceptor.dart';
 import 'package:injectable/injectable.dart';
-
 
 @module
 abstract class NetworkModule {
@@ -23,7 +22,14 @@ abstract class NetworkModule {
     );
 
     if (config.isDev || config.isStaging) {
-      dio.interceptors.add(const LoggingInterceptor());
+      dio.interceptors.add(
+        NetworkLoggingInterceptor(
+          logRequestHeaders: false,
+          logRequestBody: true,
+          logResponseBody: true,
+          logResponseHeaders: false,
+        ),
+      );
     }
 
     dio.interceptors.add(RetryInterceptor(dio: dio));

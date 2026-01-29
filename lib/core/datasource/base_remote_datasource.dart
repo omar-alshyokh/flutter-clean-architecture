@@ -2,7 +2,6 @@ import 'package:flutter_clean_architecture/core/error/failures.dart';
 import 'package:flutter_clean_architecture/core/model/result.dart';
 import 'package:flutter_clean_architecture/core/network/dio_client.dart';
 
-
 abstract class BaseRemoteDataSource {
   final DioClient client;
 
@@ -13,7 +12,10 @@ abstract class BaseRemoteDataSource {
     required T Function(Map<String, dynamic> json) fromJson,
     Map<String, dynamic>? queryParameters,
   }) async {
-    final result = await client.get<dynamic>(path, queryParameters: queryParameters);
+    final result = await client.get<dynamic>(
+      path,
+      queryParameters: queryParameters,
+    );
 
     return switch (result) {
       Success(:final data) => _parseList(data.data, fromJson),
@@ -26,7 +28,10 @@ abstract class BaseRemoteDataSource {
     required T Function(Map<String, dynamic> json) fromJson,
     Map<String, dynamic>? queryParameters,
   }) async {
-    final result = await client.get<dynamic>(path, queryParameters: queryParameters);
+    final result = await client.get<dynamic>(
+      path,
+      queryParameters: queryParameters,
+    );
 
     return switch (result) {
       Success(:final data) => _parseObject(data.data, fromJson),
@@ -52,9 +57,9 @@ abstract class BaseRemoteDataSource {
   }
 
   Result<List<T>> _parseList<T>(
-      dynamic raw,
-      T Function(Map<String, dynamic>) fromJson,
-      ) {
+    dynamic raw,
+    T Function(Map<String, dynamic>) fromJson,
+  ) {
     if (raw is List) {
       final list = <T>[];
       for (final item in raw) {
@@ -68,13 +73,12 @@ abstract class BaseRemoteDataSource {
   }
 
   Result<T> _parseObject<T>(
-      dynamic raw,
-      T Function(Map<String, dynamic>) fromJson,
-      ) {
+    dynamic raw,
+    T Function(Map<String, dynamic>) fromJson,
+  ) {
     if (raw is Map<String, dynamic>) {
       return Success(fromJson(raw));
     }
     return const Failure(UnknownError(message: 'Invalid response format'));
   }
 }
-

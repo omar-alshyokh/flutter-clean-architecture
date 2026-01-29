@@ -8,9 +8,8 @@ class AppTextField extends StatelessWidget {
   final TextInputType? keyboardType;
 
   const AppTextField({
-    super.key,
+    required this.label, super.key,
     this.controller,
-    required this.label,
     this.validator,
     this.obscureText = false,
     this.keyboardType,

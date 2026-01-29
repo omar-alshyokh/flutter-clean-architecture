@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_clean_architecture/features/posts/domain/entities/post_entity.dart';
 
-
 sealed class PostsState extends Equatable {
   const PostsState();
 

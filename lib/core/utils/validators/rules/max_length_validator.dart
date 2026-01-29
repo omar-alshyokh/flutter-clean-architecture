@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base_validator.dart';
+import 'package:flutter_clean_architecture/core/utils/validators/base_validator.dart';
 
 class MaxLengthValidator extends BaseValidator {
   final int max;

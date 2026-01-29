@@ -16,7 +16,7 @@ class AppLogger {
     debugPrint('[$tag][${level.name.toUpperCase()}] $message');
   }
 
-  void debug(String message) => log(message, level: LogLevel.debug);
+  void debug(String message) => log(message);
 
   void info(String message) => log(message, level: LogLevel.info);
 

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/model/result.dart';
 import 'package:flutter_clean_architecture/core/usecase/params.dart';
@@ -11,7 +13,11 @@ class PostsCubit extends Cubit<PostsState> {
 
   PostsCubit(this._getPosts) : super(const PostsInitial());
 
-  Future<void> loadPosts() async {
+  void loadPosts() {
+    unawaited(_loadPosts());
+  }
+
+  Future<void> _loadPosts() async {
     emit(const PostsLoading());
 
     final result = await _getPosts(const NoParams());

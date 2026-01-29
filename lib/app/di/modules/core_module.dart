@@ -5,7 +5,6 @@ import 'package:flutter_clean_architecture/core/storage/secure_storage_service.d
 import 'package:flutter_clean_architecture/core/utils/logger.dart';
 import 'package:injectable/injectable.dart';
 
-
 @module
 abstract class CoreModule {
   @lazySingleton

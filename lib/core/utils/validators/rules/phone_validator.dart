@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base_validator.dart';
+import 'package:flutter_clean_architecture/core/utils/validators/base_validator.dart';
 
 class PhoneValidator extends BaseValidator {
   final bool allowEmpty;
@@ -20,5 +20,6 @@ class PhoneValidator extends BaseValidator {
   }
 
   @override
-  String message(BuildContext? context) => customMessage ?? 'Enter a valid phone number';
+  String message(BuildContext? context) =>
+      customMessage ?? 'Enter a valid phone number';
 }

@@ -5,4 +5,6 @@ abstract class PostsRepository {
   const PostsRepository();
 
   Future<Result<List<PostEntity>>> getPosts();
+
+  Future<Result<PostEntity>> getPostById(int id);
 }

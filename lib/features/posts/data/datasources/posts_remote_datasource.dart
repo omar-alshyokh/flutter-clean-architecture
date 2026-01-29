@@ -8,6 +8,8 @@ abstract class PostsRemoteDataSource {
   const PostsRemoteDataSource();
 
   Future<Result<List<PostModel>>> fetchPosts();
+
+  Future<Result<PostModel>> fetchPostById(int id);
 }
 
 @LazySingleton(as: PostsRemoteDataSource)
@@ -19,6 +21,14 @@ class PostsRemoteDataSourceImpl extends BaseRemoteDataSource
   Future<Result<List<PostModel>>> fetchPosts() {
     return getList<PostModel>(
       path: Endpoints.posts,
+      fromJson: PostModel.fromJson,
+    );
+  }
+
+  @override
+  Future<Result<PostModel>> fetchPostById(int id) {
+    return getObject<PostModel>(
+      path: Endpoints.postById(id),
       fromJson: PostModel.fromJson,
     );
   }

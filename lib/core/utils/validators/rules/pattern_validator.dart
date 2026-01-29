@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../base_validator.dart';
+import 'package:flutter_clean_architecture/core/utils/validators/base_validator.dart';
 
 /// generic rule for custom regex
 class PatternValidator extends BaseValidator {

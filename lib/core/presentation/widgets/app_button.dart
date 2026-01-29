@@ -6,8 +6,7 @@ class AppButton extends StatelessWidget {
   final bool isLoading;
 
   const AppButton({
-    super.key,
-    required this.label,
+    required this.label, super.key,
     this.onPressed,
     this.isLoading = false,
   });
@@ -20,10 +19,10 @@ class AppButton extends StatelessWidget {
         onPressed: isLoading ? null : onPressed,
         child: isLoading
             ? const SizedBox(
-          height: 20,
-          width: 20,
-          child: CircularProgressIndicator(strokeWidth: 2),
-        )
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(strokeWidth: 2),
+              )
             : Text(label),
       ),
     );

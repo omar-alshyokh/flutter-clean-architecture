@@ -6,7 +6,6 @@ import 'package:flutter_clean_architecture/features/posts/domain/entities/post_e
 import 'package:flutter_clean_architecture/features/posts/domain/repositories/posts_repository.dart';
 import 'package:injectable/injectable.dart';
 
-
 @LazySingleton(as: PostsRepository)
 class PostsRepositoryImpl extends BaseRepository implements PostsRepository {
   final PostsRemoteDataSource _remote;
@@ -17,5 +16,11 @@ class PostsRepositoryImpl extends BaseRepository implements PostsRepository {
   Future<Result<List<PostEntity>>> getPosts() async {
     final remoteResult = await _remote.fetchPosts();
     return executeForList<PostModel, PostEntity>(remoteResult: remoteResult);
+  }
+
+  @override
+  Future<Result<PostEntity>> getPostById(int id) async {
+    final remoteResult = await _remote.fetchPostById(id);
+    return execute<PostModel, PostEntity>(remoteResult: remoteResult);
   }
 }

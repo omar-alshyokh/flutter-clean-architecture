@@ -7,8 +7,7 @@ class ScreenWrapper extends StatelessWidget {
   final EdgeInsets? padding;
 
   const ScreenWrapper({
-    super.key,
-    required this.child,
+    required this.child, super.key,
     this.scrollable = true,
     this.padding,
   });
@@ -21,9 +20,7 @@ class ScreenWrapper extends StatelessWidget {
     );
 
     return SafeArea(
-      child: scrollable
-          ? SingleChildScrollView(child: content)
-          : content,
+      child: scrollable ? SingleChildScrollView(child: content) : content,
     );
   }
 }

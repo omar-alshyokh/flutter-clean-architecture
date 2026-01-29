@@ -19,18 +19,15 @@ class DioClient {
         Map<String, dynamic>? queryParameters,
         Options? options,
         CancelToken? cancelToken,
-      }) async {
-    try {
-      final response = await _dio.get<T>(
+      }) {
+    return _guard(() {
+      return _dio.get<T>(
         path,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
       );
-      return Success(response);
-    } catch (e) {
-      return Failure(_errorMapper.map(e));
-    }
+    });
   }
 
   Future<Result<Response<T>>> post<T>(
@@ -39,19 +36,16 @@ class DioClient {
         Map<String, dynamic>? queryParameters,
         Options? options,
         CancelToken? cancelToken,
-      }) async {
-    try {
-      final response = await _dio.post<T>(
+      }) {
+    return _guard(() {
+      return _dio.post<T>(
         path,
         data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
       );
-      return Success(response);
-    } catch (e) {
-      return Failure(_errorMapper.map(e));
-    }
+    });
   }
 
   Future<Result<Response<T>>> put<T>(
@@ -60,19 +54,16 @@ class DioClient {
         Map<String, dynamic>? queryParameters,
         Options? options,
         CancelToken? cancelToken,
-      }) async {
-    try {
-      final response = await _dio.put<T>(
+      }) {
+    return _guard(() {
+      return _dio.put<T>(
         path,
         data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
       );
-      return Success(response);
-    } catch (e) {
-      return Failure(_errorMapper.map(e));
-    }
+    });
   }
 
   Future<Result<Response<T>>> delete<T>(
@@ -81,17 +72,27 @@ class DioClient {
         Map<String, dynamic>? queryParameters,
         Options? options,
         CancelToken? cancelToken,
-      }) async {
-    try {
-      final response = await _dio.delete<T>(
+      }) {
+    return _guard(() {
+      return _dio.delete<T>(
         path,
         data: data,
         queryParameters: queryParameters,
         options: options,
         cancelToken: cancelToken,
       );
+    });
+  }
+
+  Future<Result<Response<T>>> _guard<T>(
+      Future<Response<T>> Function() request,
+      ) async {
+    try {
+      final response = await request();
       return Success(response);
-    } catch (e) {
+    } on DioException catch (e) {
+      return Failure(_errorMapper.map(e));
+    } on Exception catch (e) {
       return Failure(_errorMapper.map(e));
     }
   }

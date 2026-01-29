@@ -1,12 +1,6 @@
 import 'package:flutter_clean_architecture/app/config/environment.dart';
 
 class AppConfig {
-  final Environment env;
-  final String baseUrl;
-  final String mapsKey;
-  final String recaptchaKey;
-  final List<String> spkiPins;
-
   const AppConfig({
     required this.env,
     required this.baseUrl,
@@ -21,11 +15,13 @@ class AppConfig {
       defaultValue: 'https://jsonplaceholder.typicode.com',
     );
 
-    const mapsKey = String.fromEnvironment('MAPS_KEY', defaultValue: '');
-    const recaptchaKey = String.fromEnvironment('RECAPTCHA_KEY', defaultValue: '');
+    const mapsKey = String.fromEnvironment('MAPS_KEY');
+    const recaptchaKey = String.fromEnvironment(
+      'RECAPTCHA_KEY',
+    );
 
-    const pin1 = String.fromEnvironment('PIN_SPKI_1', defaultValue: '');
-    const pin2 = String.fromEnvironment('PIN_SPKI_2', defaultValue: '');
+    const pin1 = String.fromEnvironment('PIN_SPKI_1');
+    const pin2 = String.fromEnvironment('PIN_SPKI_2');
 
     final pins = <String>[
       if (pin1.isNotEmpty) pin1,
@@ -40,6 +36,11 @@ class AppConfig {
       spkiPins: pins,
     );
   }
+  final Environment env;
+  final String baseUrl;
+  final String mapsKey;
+  final String recaptchaKey;
+  final List<String> spkiPins;
 
   bool get isDev => env == Environment.dev;
   bool get isStaging => env == Environment.staging;

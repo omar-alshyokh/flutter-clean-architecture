@@ -6,6 +6,7 @@ import 'package:flutter_clean_architecture/core/presentation/widgets/error_view.
 import 'package:flutter_clean_architecture/core/presentation/widgets/loading_view.dart';
 import 'package:flutter_clean_architecture/features/posts/presentation/state/posts_cubit.dart';
 import 'package:flutter_clean_architecture/features/posts/presentation/state/posts_state.dart';
+import 'package:go_router/go_router.dart';
 
 class PostsPage extends StatelessWidget {
   const PostsPage({super.key});
@@ -29,10 +30,10 @@ class PostsPage extends StatelessWidget {
                 posts.isEmpty
                     ? const EmptyView(message: 'No posts found')
                     : RefreshIndicator(
-                        onRefresh: () => context.read<PostsCubit>().loadPosts(),
+                        onRefresh: () async => context.read<PostsCubit>().loadPosts(),
                         child: ListView.separated(
                           itemCount: posts.length,
-                          separatorBuilder: (_, __) => const Divider(height: 1),
+                          separatorBuilder: (_, _) => const Divider(height: 1),
                           itemBuilder: (context, index) {
                             final post = posts[index];
                             return ListTile(
@@ -46,6 +47,7 @@ class PostsPage extends StatelessWidget {
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                               ),
+                              onTap: () => context.push('/posts/${post.id}'),
                             );
                           },
                         ),
