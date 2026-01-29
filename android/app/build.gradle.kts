@@ -9,6 +9,7 @@ android {
     namespace = "com.proj.starter.flutter_clean_architecture"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+    flavorDimensions += "env"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -35,6 +36,25 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    productFlavors {
+        create("dev") {
+            dimension = "env"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            resValue("string", "app_name", "Flutter Clean Dev")
+        }
+        create("staging") {
+            dimension = "env"
+            applicationIdSuffix = ".stg"
+            versionNameSuffix = "-stg"
+            resValue("string", "app_name", "Flutter Clean Staging")
+        }
+        create("prod") {
+            dimension = "env"
+            resValue("string", "app_name", "Flutter Clean")
         }
     }
 }

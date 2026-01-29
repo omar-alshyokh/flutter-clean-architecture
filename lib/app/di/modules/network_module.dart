@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_clean_architecture/app/config/app_config.dart';
 import 'package:flutter_clean_architecture/core/constants/app_constants.dart';
 import 'package:flutter_clean_architecture/core/error/error_mapper.dart';
 import 'package:flutter_clean_architecture/core/network/dio_client.dart';
-import 'package:flutter_clean_architecture/core/network/endpoints.dart';
 import 'package:flutter_clean_architecture/core/network/interceptors/logging_interceptor.dart';
 import 'package:flutter_clean_architecture/core/network/interceptors/retry_interceptor.dart';
 import 'package:injectable/injectable.dart';
@@ -11,10 +11,10 @@ import 'package:injectable/injectable.dart';
 @module
 abstract class NetworkModule {
   @lazySingleton
-  Dio dio() {
+  Dio dio(AppConfig config) {
     final dio = Dio(
       BaseOptions(
-        baseUrl: Endpoints.baseUrl,
+        baseUrl: config.baseUrl,
         connectTimeout: AppConstants.connectTimeout,
         sendTimeout: AppConstants.sendTimeout,
         receiveTimeout: AppConstants.receiveTimeout,
@@ -22,10 +22,11 @@ abstract class NetworkModule {
       ),
     );
 
-    dio.interceptors.addAll([
-      const LoggingInterceptor(),
-      RetryInterceptor(dio: dio),
-    ]);
+    if (config.isDev || config.isStaging) {
+      dio.interceptors.add(const LoggingInterceptor());
+    }
+
+    dio.interceptors.add(RetryInterceptor(dio: dio));
 
     return dio;
   }

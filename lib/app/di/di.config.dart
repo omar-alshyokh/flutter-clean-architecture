@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:flutter_clean_architecture/app/config/app_config.dart' as _i348;
 import 'package:flutter_clean_architecture/app/di/modules/core_module.dart'
     as _i133;
 import 'package:flutter_clean_architecture/app/di/modules/network_module.dart'
@@ -25,6 +26,14 @@ import 'package:flutter_clean_architecture/core/storage/secure_storage_service.d
 import 'package:flutter_clean_architecture/core/utils/logger.dart' as _i714;
 import 'package:flutter_clean_architecture/features/posts/data/datasources/posts_remote_datasource.dart'
     as _i435;
+import 'package:flutter_clean_architecture/features/posts/data/repositories/posts_repository_impl.dart'
+    as _i549;
+import 'package:flutter_clean_architecture/features/posts/domain/repositories/posts_repository.dart'
+    as _i818;
+import 'package:flutter_clean_architecture/features/posts/domain/usecases/get_posts_usecase.dart'
+    as _i209;
+import 'package:flutter_clean_architecture/features/posts/presentation/state/posts_cubit.dart'
+    as _i494;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -45,12 +54,21 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i714.AppLogger>(() => coreModule.logger());
     gh.lazySingleton<_i981.ErrorMapper>(() => coreModule.errorMapper());
-    gh.lazySingleton<_i361.Dio>(() => networkModule.dio());
+    gh.lazySingleton<_i361.Dio>(() => networkModule.dio(gh<_i348.AppConfig>()));
     gh.lazySingleton<_i889.DioClient>(
       () => networkModule.dioClient(gh<_i361.Dio>(), gh<_i981.ErrorMapper>()),
     );
     gh.lazySingleton<_i435.PostsRemoteDataSource>(
       () => _i435.PostsRemoteDataSourceImpl(gh<_i889.DioClient>()),
+    );
+    gh.lazySingleton<_i818.PostsRepository>(
+      () => _i549.PostsRepositoryImpl(gh<_i435.PostsRemoteDataSource>()),
+    );
+    gh.factory<_i209.GetPostsUseCase>(
+      () => _i209.GetPostsUseCase(gh<_i818.PostsRepository>()),
+    );
+    gh.factory<_i494.PostsCubit>(
+      () => _i494.PostsCubit(gh<_i209.GetPostsUseCase>()),
     );
     return this;
   }
