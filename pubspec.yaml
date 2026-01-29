@@ -1,147 +1,86 @@
 name: flutter_clean_architecture
-description: "A new Flutter project."
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+description: "A Flutter starter template showcasing Clean Architecture (data/domain/presentation), DI, networking, state management, and scalable app structure."
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-# In Windows, build-name is used as the major, minor, and patch parts
-# of the product and file versions while build-number is used as the build suffix.
+# Prevent accidental publication to pub.dev
+publish_to: "none"
+
 version: 1.0.0+1
 
 environment:
   sdk: ^3.10.7
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+  # -------------------------
+  # UI / UX
+  # -------------------------
+  cupertino_icons: ^1.0.8 # iOS-style icons
+  cached_network_image: ^3.3.1 # Image caching + placeholders
+  flutter_staggered_animations: ^1.1.1 # List/Grid entrance animations
+  animate_do: ^4.2.0 # Prebuilt lightweight animations
 
-  # A Dart package that helps to implement value based
-  # equality without needing to explicitly override == and hashCode.
-  equatable: ^2.0.5
+  # -------------------------
+  # State Management
+  # -------------------------
+  flutter_bloc: ^9.1.1 # BLoC/Cubit for predictable state management
+  provider: ^6.1.2 # Simple DI/state (use sparingly if BLoC is primary)
 
-  # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern.
-  # Built to be used with the bloc state management package.
-  flutter_bloc: ^9.1.1
+  # -------------------------
+  # Dependency Injection
+  # -------------------------
+  get_it: ^9.2.0 # Service locator (composition root)
+  injectable: ^2.7.1+4 # Code-gen bindings for get_it
 
-  # Simple direct Service Locator that allows to decouple the interface from a concrete implementation
-  #and to access the concrete implementation from everywhere in your App"
-  get_it: ^9.2.0
+  # -------------------------
+  # Networking / Connectivity
+  # -------------------------
+  dio: ^5.4.3+1 # HTTP client (interceptors, cancellation, retries, etc.)
+  connectivity_plus: ^7.0.0 # Network type/status (WiFi/mobile)
+  internet_connection_checker_plus: ^2.5.0 # Real internet reachability checks
 
-  # Injectable is a convenient code generator for get_it.
-  injectable: ^2.7.1+4
+  # -------------------------
+  # Persistence / Storage
+  # -------------------------
+  shared_preferences: ^2.2.2 # Non-sensitive local key/value storage
+  flutter_secure_storage: ^10.0.0 # Encrypted secure storage (tokens, secrets)
 
-  # A powerful Http client for Dart, which supports Interceptors,
-  # FormData, Request Cancellation, File Downloading, Timeout etc.
-  dio: ^5.4.3+1
+  # -------------------------
+  # Platform / Device / App Info
+  # -------------------------
+  package_info_plus: ^9.0.0 # App version/build/package info
+  device_info_plus: ^12.3.0 # Device model/OS details
+  permission_handler: ^12.0.1 # Runtime permissions
+  path_provider: ^2.1.3 # App directories (not supported on web)
 
+  # -------------------------
+  # Utilities / Foundations
+  # -------------------------
+  equatable: ^2.0.5 # Value equality for entities/states/events
+  collection: ^1.18.0 # Collection helpers/extensions
+  intl: ^0.20.2 # Localization + date/number formatting
+  url_launcher: ^6.3.0 # Open links, phone, email, SMS
 
-  # Flutter plugin for reading and writing simple key-value pairs.
-  # Wraps NSUserDefaults on iOS and SharedPreferences on Android.
-  shared_preferences: ^2.2.2
-  # A Flutter plugin for securely storing sensitive data using encrypted storage.
-  flutter_secure_storage: ^10.0.0
-
-
-  # A wrapper around InheritedWidget to make them easier to use and more reusable.
-  provider: ^6.1.2
-
-  # Web Not Supported
-  path_provider: ^2.1.3
-
-
-
-  # Contains code to deal with internationalized/localized messages
-  # date and number formatting and parsing, bi-directional text,
-  # and other internationalization issues.
-  intl: ^0.20.2
-
-
-  # Flutter plugin for discovering the state of the network (WiFi & mobile/cellular) connectivity on Android and iOS.
-  connectivity_plus: ^7.0.0
-
-  # A Flutter package to check your internet connection with subsecond response times, even on mobile networks!
-  internet_connection_checker_plus: ^2.5.0
-
-  # Flutter plugin for querying information about the application package,
-  # such as CFBundleVersion on iOS or versionCode on Android.
-  package_info_plus: ^9.0.0
-
-
-  # Permission plugin for Flutter.
-  # This plugin provides a cross-platform (iOS, Android) API to request and check permissions.
-  permission_handler: ^12.0.1
-
-
-  device_info_plus: ^12.3.0
-
-
-  # Flutter plugin for launching a URL. Supports web, phone, SMS, and email schemes.
-  url_launcher: ^6.3.0
-
-
-  # Flutter library to load and cache network images.
-  # Can also be used with placeholder and error widgets.
-  cached_network_image: ^3.3.1
-
-  # Collections and utilities functions and classes related to collections.
-  collection: ^1.18.0
-
-  # Easily add staggered animations to your ListView, GridView, Column and Row children as shown in Material Design guidelines
-  flutter_staggered_animations: ^1.1.1
-
-  # Beautiful animations inspired on Animate.css,
-  # every animation is a widgets that contains default but customizable values that look attractive.
-  animate_do: ^4.2.0
-
-  # Classes and helper functions that support JSON code generation via the `json_serializable` package.
-  json_annotation: ^4.9.0
-
+  # -------------------------
+  # Serialization (Models / DTOs)
+  # -------------------------
+  json_annotation: ^4.9.0 # Annotations for json_serializable
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
+  # Linting / Quality
   flutter_lints: ^6.0.0
-  injectable_generator: ^2.12.0
-  json_serializable: ^6.12.0
-  build_runner: ^2.10.5
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+  # Code Generation
+  build_runner: ^2.10.5 # Runs builders for code generation
+  json_serializable: ^6.12.0 # Generates fromJson/toJson
+  injectable_generator: ^2.12.0 # Generates get_it registrations
 
-# The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-
 
   assets:
     - assets/
