@@ -61,6 +61,7 @@ dependencies:
   collection: ^1.18.0 # Collection helpers/extensions
   intl: ^0.20.2 # Localization + date/number formatting
   url_launcher: ^6.3.0 # Open links, phone, email, SMS
+  go_router: ^17.0.1 # navigation, deep linking, data-driven routes and more
 
   # -------------------------
   # Serialization (Models / DTOs)
