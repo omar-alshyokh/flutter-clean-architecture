@@ -20,32 +20,26 @@ class DioErrorMapper implements ErrorMapper {
     return switch (exception.type) {
       DioExceptionType.connectionTimeout ||
       DioExceptionType.sendTimeout ||
-      DioExceptionType.receiveTimeout =>
-          TimeoutError(
-            message: 'Request timed out',
-            code: statusCode,
-          ),
+      DioExceptionType.receiveTimeout => TimeoutError(
+        message: 'Request timed out',
+        code: statusCode,
+      ),
 
-      DioExceptionType.connectionError =>
-          NetworkConnectionError(
-            message: 'No internet connection',
-            code: statusCode,
-          ),
+      DioExceptionType.connectionError => NetworkConnectionError(
+        message: 'No internet connection',
+        code: statusCode,
+      ),
 
-      DioExceptionType.badResponse =>
-          _mapHttpStatus(exception.response?.statusCode, exception),
+      DioExceptionType.badResponse => _mapHttpStatus(exception.response?.statusCode, exception),
 
-      DioExceptionType.cancel =>
-      const CustomError(message: 'Request cancelled'),
+      DioExceptionType.cancel => const CustomError(message: 'Request cancelled'),
 
-      DioExceptionType.badCertificate =>
-      const CustomError(message: 'Bad certificate'),
+      DioExceptionType.badCertificate => const CustomError(message: 'Bad certificate'),
 
-      DioExceptionType.unknown =>
-          UnknownError(
-            message: exception.message ?? 'Unexpected error occurred',
-            code: statusCode,
-          ),
+      DioExceptionType.unknown => UnknownError(
+        message: exception.message ?? 'Unexpected error occurred',
+        code: statusCode,
+      ),
     };
   }
 

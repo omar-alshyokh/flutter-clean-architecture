@@ -7,7 +7,8 @@ class ScreenWrapper extends StatelessWidget {
   final EdgeInsets? padding;
 
   const ScreenWrapper({
-    required this.child, super.key,
+    required this.child,
+    super.key,
     this.scrollable = true,
     this.padding,
   });

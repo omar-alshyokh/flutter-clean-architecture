@@ -6,7 +6,8 @@ class AppButton extends StatelessWidget {
   final bool isLoading;
 
   const AppButton({
-    required this.label, super.key,
+    required this.label,
+    super.key,
     this.onPressed,
     this.isLoading = false,
   });

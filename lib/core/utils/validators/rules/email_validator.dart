@@ -22,8 +22,7 @@ class EmailValidator extends BaseValidator {
   }
 
   @override
-  String message(BuildContext? context) =>
-      customMessage ?? 'Enter a valid email address';
+  String message(BuildContext? context) => customMessage ?? 'Enter a valid email address';
 
   /// How to use
   /// TextFormField(

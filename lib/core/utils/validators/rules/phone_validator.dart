@@ -20,6 +20,5 @@ class PhoneValidator extends BaseValidator {
   }
 
   @override
-  String message(BuildContext? context) =>
-      customMessage ?? 'Enter a valid phone number';
+  String message(BuildContext? context) => customMessage ?? 'Enter a valid phone number';
 }

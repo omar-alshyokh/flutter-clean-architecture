@@ -7,7 +7,9 @@ import 'package:flutter_clean_architecture/features/posts/presentation/state/pos
 import 'package:flutter_clean_architecture/features/posts/presentation/state/post_details_state.dart';
 
 class PostDetailsPage extends StatelessWidget {
-  const PostDetailsPage({super.key});
+  const PostDetailsPage({required this.postId, super.key});
+
+  final int postId;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,10 @@ class PostDetailsPage extends StatelessWidget {
             return switch (state) {
               PostDetailsInitial() => const SizedBox.shrink(),
               PostDetailsLoading() => const LoadingView(),
-              PostDetailsError(:final message) => ErrorView(message: message),
+              PostDetailsError(:final message) => ErrorView(
+                message: message,
+                onRetry: () => context.read<PostDetailsCubit>().load(postId),
+              ),
               PostDetailsLoaded(:final post) => ListView(
                 children: [
                   Text(

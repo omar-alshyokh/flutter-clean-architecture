@@ -9,17 +9,17 @@ class DioClient {
   DioClient({
     required Dio dio,
     required ErrorMapper errorMapper,
-  })  : _dio = dio,
-        _errorMapper = errorMapper;
+  }) : _dio = dio,
+       _errorMapper = errorMapper;
 
   Dio get instance => _dio;
 
   Future<Result<Response<T>>> get<T>(
-      String path, {
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-      }) {
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+  }) {
     return _guard(() {
       return _dio.get<T>(
         path,
@@ -31,12 +31,12 @@ class DioClient {
   }
 
   Future<Result<Response<T>>> post<T>(
-      String path, {
-        Object? data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-      }) {
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+  }) {
     return _guard(() {
       return _dio.post<T>(
         path,
@@ -49,12 +49,12 @@ class DioClient {
   }
 
   Future<Result<Response<T>>> put<T>(
-      String path, {
-        Object? data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-      }) {
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+  }) {
     return _guard(() {
       return _dio.put<T>(
         path,
@@ -67,12 +67,12 @@ class DioClient {
   }
 
   Future<Result<Response<T>>> delete<T>(
-      String path, {
-        Object? data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-      }) {
+    String path, {
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+  }) {
     return _guard(() {
       return _dio.delete<T>(
         path,
@@ -85,8 +85,8 @@ class DioClient {
   }
 
   Future<Result<Response<T>>> _guard<T>(
-      Future<Response<T>> Function() request,
-      ) async {
+    Future<Response<T>> Function() request,
+  ) async {
     try {
       final response = await request();
       return Success(response);

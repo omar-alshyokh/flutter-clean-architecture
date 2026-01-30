@@ -16,10 +16,10 @@ dependencies:
   # -------------------------
   # UI / UX
   # -------------------------
-  cupertino_icons: ^1.0.8 # iOS-style icons
-  cached_network_image: ^3.3.1 # Image caching + placeholders
-  flutter_staggered_animations: ^1.1.1 # List/Grid entrance animations
   animate_do: ^4.2.0 # Prebuilt lightweight animations
+  cached_network_image: ^3.3.1 # Image caching + placeholders
+  cupertino_icons: ^1.0.8 # iOS-style icons
+  flutter_staggered_animations: ^1.1.1 # List/Grid entrance animations
 
   # -------------------------
   # State Management
@@ -73,14 +73,23 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # Linting / Quality
-  #  flutter_lints: ^6.0.0
-
+  # -------------------------
   # Code Generation
-  build_runner: ^2.10.5 # Runs builders for code generation
-  json_serializable: ^6.12.0 # Generates fromJson/toJson
-  injectable_generator: ^2.12.0 # Generates get_it registrations
-  very_good_analysis: ^10.0.0 # Dart code analysis
+  # -------------------------
+  build_runner: ^2.10.5
+  injectable_generator: ^2.9.1
+  json_serializable: ^6.11.0
+
+  # -------------------------
+  # Testing
+  # -------------------------
+  bloc_test: ^10.0.0
+  mocktail: ^1.0.4
+
+  # -------------------------
+  # Linting / Quality
+  # -------------------------
+  very_good_analysis: ^10.0.0
 
 flutter:
   uses-material-design: true

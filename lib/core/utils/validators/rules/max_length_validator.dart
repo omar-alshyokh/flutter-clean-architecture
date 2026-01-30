@@ -11,6 +11,5 @@ class MaxLengthValidator extends BaseValidator {
   bool validate(String value) => value.trim().length <= max;
 
   @override
-  String message(BuildContext? context) =>
-      customMessage ?? 'Must be $max characters or fewer';
+  String message(BuildContext? context) => customMessage ?? 'Must be $max characters or fewer';
 }

@@ -10,6 +10,5 @@ class RequiredValidator extends BaseValidator {
   bool validate(String value) => value.trim().isNotEmpty;
 
   @override
-  String message(BuildContext? context) =>
-      customMessage ?? 'This field is required';
+  String message(BuildContext? context) => customMessage ?? 'This field is required';
 }

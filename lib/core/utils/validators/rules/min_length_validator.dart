@@ -11,8 +11,7 @@ class MinLengthValidator extends BaseValidator {
   bool validate(String value) => value.trim().length >= min;
 
   @override
-  String message(BuildContext? context) =>
-      customMessage ?? 'Must be at least $min characters';
+  String message(BuildContext? context) => customMessage ?? 'Must be at least $min characters';
 
   /// How to use
   /// TextFormField(

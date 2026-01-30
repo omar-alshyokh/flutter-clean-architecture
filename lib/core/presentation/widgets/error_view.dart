@@ -5,7 +5,8 @@ class ErrorView extends StatelessWidget {
   final VoidCallback? onRetry;
 
   const ErrorView({
-    required this.message, super.key,
+    required this.message,
+    super.key,
     this.onRetry,
   });
 
@@ -19,6 +20,7 @@ class ErrorView extends StatelessWidget {
           if (onRetry != null) ...[
             const SizedBox(height: 12),
             ElevatedButton(
+              key: const Key('error_retry_button'),
               onPressed: onRetry,
               child: const Text('Retry'),
             ),

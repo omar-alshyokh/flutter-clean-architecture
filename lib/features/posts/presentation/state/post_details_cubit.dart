@@ -12,13 +12,11 @@ class PostDetailsCubit extends Cubit<PostDetailsState> {
 
   PostDetailsCubit(this._useCase) : super(const PostDetailsInitial());
 
-
   void load(int id) {
     unawaited(_load(id));
   }
 
   Future<void> _load(int id) async {
-
     emit(const PostDetailsLoading());
 
     final result = await _useCase(PostIdParams(id));
@@ -30,6 +28,4 @@ class PostDetailsCubit extends Cubit<PostDetailsState> {
         emit(PostDetailsError(error.message ?? 'Something went wrong'));
     }
   }
-
-
 }

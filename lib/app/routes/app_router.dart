@@ -38,7 +38,9 @@ abstract class AppRouter {
 
           return BlocProvider(
             create: (_) => getIt<PostDetailsCubit>()..load(id),
-            child: const PostDetailsPage(),
+            child: PostDetailsPage(
+              postId: id,
+            ),
           );
         },
       ),

@@ -14,8 +14,7 @@ class MatchValidator extends BaseValidator {
   bool validate(String value) => value == otherValue();
 
   @override
-  String message(BuildContext? context) =>
-      customMessage ?? 'Values do not match';
+  String message(BuildContext? context) => customMessage ?? 'Values do not match';
 
   /// How to use
   /// final passwordController = TextEditingController();

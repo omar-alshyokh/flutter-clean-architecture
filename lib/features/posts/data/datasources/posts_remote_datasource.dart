@@ -13,8 +13,7 @@ abstract class PostsRemoteDataSource {
 }
 
 @LazySingleton(as: PostsRemoteDataSource)
-class PostsRemoteDataSourceImpl extends BaseRemoteDataSource
-    implements PostsRemoteDataSource {
+class PostsRemoteDataSourceImpl extends BaseRemoteDataSource implements PostsRemoteDataSource {
   PostsRemoteDataSourceImpl(super.client);
 
   @override
