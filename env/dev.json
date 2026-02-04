@@ -1,0 +1,10 @@
+{
+  "ENV": "dev",
+  "BASE_URL": "https://jsonplaceholder.typicode.com",
+  "MAPS_KEY": "",
+  "RECAPTCHA_KEY": "",
+
+  "PIN_HOST_1": "",
+  "PIN_1_A": "",
+  "PIN_1_B": ""
+}

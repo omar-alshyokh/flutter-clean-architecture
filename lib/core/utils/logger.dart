@@ -13,7 +13,9 @@ class AppLogger {
 
   void log(String message, {LogLevel level = LogLevel.debug}) {
     if (!enabled) return;
-    debugPrint('[$tag][${level.name.toUpperCase()}] $message');
+    if(kDebugMode) {
+      debugPrint('[$tag][${level.name.toUpperCase()}] $message');
+    }
   }
 
   void debug(String message) => log(message);

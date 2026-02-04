@@ -1,0 +1,10 @@
+{
+  "ENV": "prod",
+  "BASE_URL": "https://api.yourdomain.com",
+  "MAPS_KEY": "",
+  "RECAPTCHA_KEY": "",
+
+  "PIN_HOST_1": "api.yourdomain.com",
+  "PIN_1_A": "BASE64_SPKI_PIN_1==",
+  "PIN_1_B": "BASE64_SPKI_PIN_2=="
+}

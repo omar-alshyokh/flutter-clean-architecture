@@ -1,0 +1,10 @@
+{
+  "ENV": "staging",
+  "BASE_URL": "<PUT_VALUE>",
+  "MAPS_KEY": "<PUT_VALUE>",
+  "RECAPTCHA_KEY": "<PUT_VALUE>",
+
+  "PIN_HOST_1": "<PUT_VALUE>",
+  "PIN_1_A": "<PUT_VALUE>",
+  "PIN_1_B": "<PUT_VALUE>"
+}

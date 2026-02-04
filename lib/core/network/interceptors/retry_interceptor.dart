@@ -38,9 +38,17 @@ class RetryInterceptor extends Interceptor {
   }
 
   bool _isRetryable(DioException err) {
+    // Dio uses this for certificate problems in many cases
+    if (err.type == DioExceptionType.badCertificate) return false;
+
+    // Also avoid retrying handshake-related failures
+    final msg = err.error?.toString().toLowerCase() ?? '';
+    if (msg.contains('handshake') || msg.contains('certificate')) return false;
+
     return err.type == DioExceptionType.connectionTimeout ||
         err.type == DioExceptionType.sendTimeout ||
         err.type == DioExceptionType.receiveTimeout ||
         err.type == DioExceptionType.connectionError;
   }
+
 }

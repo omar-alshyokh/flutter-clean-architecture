@@ -40,7 +40,8 @@ dependencies:
   connectivity_plus: ^7.0.0 # Network type/status (WiFi/mobile)
   internet_connection_checker_plus: ^2.5.0 # Real internet reachability checks
   pretty_dio_logger: ^1.4.0 # Pretty logging for Dio requests/responses
-
+  x509: ^0.2.4+3 # parsing and working with X.509 certificates.
+  crypto: ^3.0.7 # Implementations of SHA, MD5, and HMAC cryptographic functions.#crypto#cryptography
   # -------------------------
   # Persistence / Storage
   # -------------------------

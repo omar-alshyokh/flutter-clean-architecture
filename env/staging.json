@@ -1,0 +1,10 @@
+{
+  "ENV": "staging",
+  "BASE_URL": "https://jsonplaceholder.typicode.com",
+  "MAPS_KEY": "",
+  "RECAPTCHA_KEY": "",
+
+  "PIN_HOST_1": "jsonplaceholder.typicode.com",
+  "PIN_1_A": "FQ1hZ4k0vQZTdXEGJsqzJV0B2KPTv5zMBH6Gp5TGynY=",
+  "PIN_1_B": ""
+}
